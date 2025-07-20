@@ -1,42 +1,43 @@
 <?php
     session_start();
 
-    include 'conexao_bd.php';
+    $host = 'db.ugifgqjdrxagkgdxtxex.supabase.co';
+    $porta = '5432';
+    $dbname = 'postgres';
+    $usuario = 'postgres';
+    $senha_bd = 'LibreriaHonyasan.';
+
+    try {
+        $conexao = new PDO("pgsql:host=$host;port=$porta;dbname=$dbname", $usuario, $senha_bd);
+        $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        die("Erro na conexão: " . $e->getMessage());
+    }
 
     $email = trim($_POST['emailUsuario'] ?? '');
     $senha = trim($_POST['senhaUsuario'] ?? '');
 
-    try {
-        // Prepara a consulta no PostgreSQL
+    if ($email && $senha) {
         $stmt = $conexao->prepare("SELECT id, email, senha FROM usuarios WHERE email = :email");
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR); // como eu fiz o DB no superbase precisa usar algumas coisas diferentes
-        $stmt->execute();
+        $stmt->execute([':email' => $email]);
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($stmt->rowCount() > 0) {
-            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // Compara diretamente a senha
-            if ($senha === $usuario['senha']) {
+        if ($usuario) {
+            if ($senha === $usuario['senha'] /* ou password_verify($senha, $usuario['senha']) */) {
                 $_SESSION['usuario_id'] = $usuario['id'];
                 $_SESSION['usuario_email'] = $usuario['email'];
                 header("Location: /Trab/template/inicio/inicio.html");
                 exit;
-            } 
-            
-            else {
-                // Senha incorreta
-                header("Location: /Trab/index.html");
+            } else {
+                header("Location: /Trab/index.html?erro=senha");
                 exit;
             }
-
         } else {
-            // Email não encontrado
-            header("Location: /Trab/index.html");
+            header("Location: /Trab/index.html?erro=email");
             exit;
         }
-
-    } catch (PDOException $e) {
-        echo "Erro: " . $e->getMessage();
+    } else {
+        header("Location: /Trab/index.html?erro=campos");
+        exit;
     }
-
 ?>
