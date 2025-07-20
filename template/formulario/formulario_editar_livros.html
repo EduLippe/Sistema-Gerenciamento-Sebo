@@ -16,7 +16,6 @@
 
 <body>
 
-    <!-- NAVBAR -->
     <nav class="menu-navbar navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <!--navbar: classe padrão do Bootstrap para criar uma navbar.
         navbar-expand-lg: torna o menu expansível (se adapta em telas pequenas).
@@ -58,61 +57,77 @@
             </form>
         </div>
     </nav>
-
+    
     <!-- FORMULÁRIO -->
     <div class="container mt-4">
-        <h1 class="text-center mb-4 titulo-principal">Editar Livro</h1>
+        <h1 class="text-center mb-4 titulo-principal">Livro que deseja Editar</h1>
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
                 <div class="card formulario-card p-4">
-                    <form id="formDisco" action="php/inserir_livro.php" method="post">
+                    <form id="formDisco" action="../../php/editar_livro.php" method="post">
+                        <h3>Dados atuais do Livro (para localizar)</h3>
                         <div class="mb-3">
-                            <label for="tituloLivro" class="form-label label-cor">Título</label>
-                            <input type="text" class="form-control" id="tituloLivro" name="titulo">
-                            <div class="invalid-feedback">Preencha com o nome do Livro</div>
+                            <label for="titulo" class="form-label label-cor">Título</label>
+                            <input type="text" class="form-control" id="titulo" name="titulo">
+                            <div class="invalid-feedback">Preencha com o nome atual do Disco.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="autorLivro" class="form-label label-cor">Autor</label>
-                            <input type="text" class="form-control" id="autorLivro" name="autor">
-                            <div class="invalid-feedback">Preencha com o nome do Autor.</div>
+                            <label for="autor" class="form-label label-cor">Autor</label>
+                            <input type="text" class="form-control" id="autor" name="autor">
+                            <div class="invalid-feedback">Preencha com o nome atual do Autor.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="paginasLivro" class="form-label label-cor">Número de Páginas</label>
-                            <input type="number" class="form-control" id="paginasLivro" name="paginas">
-                            <div class="invalid-feedback">Preencha com a quantidade de páginas no livro.</div>
+                            <label for="editora" class="form-label label-cor">Editora</label>
+                            <input type="text" class="form-control" id="editora" name="editora">
+                            <div class="invalid-feedback">Insira a editora atual do disco.</div>
+                        </div>
+                        <hr>
+                        <h3>Novos dados do Livro</h3>
+                        <div class="mb-3">
+                            <label for="novoTitulo" class="form-label label-cor">Título</label>
+                            <input type="text" class="form-control" id="novoTitulo" name="novoTitulo">
+                            <div class="invalid-feedback">Preencha com o novo nome do Disco.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="editoraLivro" class="form-label label-cor">Editora</label>
-                            <input type="text" class="form-control" id="editoraLivro" name="editora">
-                            <div class="invalid-feedback">Insira a editora do livro.</div>
+                            <label for="novoAutor" class="form-label label-cor">Autor</label>
+                            <input type="text" class="form-control" id="novoAutor" name="novoAutor">
+                            <div class="invalid-feedback">Preencha com o novo nome do Autor.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="anoPublicacaoLivro" class="form-label label-cor">Ano de Publicação</label>
-                            <input type="date" class="form-control" id="anoPublicacaoLivro" name="ano_publicacao">
-                            <div class="invalid-feedback">Insira a data de publicação.</div>
+                            <label for="novaPaginas" class="form-label label-cor">Paginas</label>
+                            <input type="number" class="form-control" id="novaPaginas" name="novaPaginas">
+                            <div class="invalid-feedback">Preencha com a nova quantidade de Paginas.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="anoPublicacao" class="form-label label-cor">Quantidade</label>
-                            <input type="number" class="form-control" id="quantidade" name="quantidade">
-                            <div class="invalid-feedback">Insira a quantidade de Livros.</div>
+                            <label for="novaEditora" class="form-label label-cor">Editora</label>
+                            <input type="text" class="form-control" id="novaEditora" name="novaEditora">
+                            <div class="invalid-feedback">Insira a nova editora do disco.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="urlImagemLivro" class="form-label label-cor">URL da Imagem</label>
-                            <input type="url" class="form-control" id="urlImagemLivro" name="url_imagem" placeholder="https://exemplo.com/imagem.jpg">
+                            <label for="novoAno_publicacao" class="form-label label-cor">Ano de publicação</label>
+                            <input type="date" class="form-control" id="novoAno_publicacao" name="novoAno_publicacao">
+                            <div class="invalid-feedback">Insira o novo ano de publicação.</div>
                         </div>
                         <div class="mb-3">
-                            <label for="descricao" class="form-label label-cor">Descrição</label>
-                            <textarea class="form-control" id="descricao" name="descricao" rows="4"></textarea> <!--Usado para textos grandes-->
-                            <div class="invalid-feedback">Insira uma descrição para o livro.</div>
+                            <label for="novaQuantidade" class="form-label label-cor">Quantidade</label>
+                            <input type="number" class="form-control" id="novaQuantidade" name="novaQuantidade">
+                            <div class="invalid-feedback">Insira a nova quantidade de Discos.</div>
                         </div>
-                        <div class="mb-5">
-                            <label for="sinopse" class="form-label label-cor">Sinopse</label>
-                            <textarea class="form-control" id="sinopse" name="sinopse" rows="6"></textarea> <!--Usado para textos grandes-->
-                            <div class="invalid-feedback">Insira uma sinopse sobre o livro.</div>
+                        <div class="mb-3">
+                            <label for="novaUrl_imagem" class="form-label label-cor">URL da Imagem</label>
+                            <input type="url" class="form-control" id="novaUrl_imagem" name="novaUrl_imagem" placeholder="https://exemplo.com/imagem.jpg">
+                        </div>
+                        <div class="mb-3">
+                            <label for="novaDescricao" class="form-label label-cor">Descrição</label>
+                            <textarea class="form-control" id="novaDescricao" name="novaDescricao" rows="5"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="novaSinopse" class="form-label label-cor">Sinopse</label>
+                            <textarea class="form-control" id="novaSinopse" name="novaSinopse" rows="5"></textarea>
                         </div>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-salvar">Salvar</button>
-                            <a href="estoque_livros.html" class="btn btn-cancelar">Cancelar</a>
+                            <a href="../estoque/estoque_livros.html" class="btn btn-cancelar">Cancelar</a>
                         </div>
                     </form>
                 </div>
@@ -130,26 +145,26 @@
 
 
             // cria variaveis para o codigo js
-            let titulo = $('#tituloLivro').val().trim();
-            let autor = $('#autorLivro').val().trim();
-            let paginas = $('#paginasLivro').val().trim();
-            let editora = $('#editoraLivro').val().trim();
-            let anoPublicacaoLivro = $('#anoPublicacaoLivro').val().trim();
+            let titulo = $('#titulo').val().trim();
+            let autor = $('#autor').val().trim();
+            let paginas = $('#paginas').val().trim();
+            let editora = $('#editora').val().trim();
+            let anoPublicacao = $('#anoPublicacao').val().trim();
             let quantidade = $('#quantidade').val().trim()
 
             // faz a verificação dos campos
             if (titulo === '') {
-                $('#tituloLivro').addClass('is-invalid');
+                $('#titulo').addClass('is-invalid');
                 valido = false;
             }
 
             if (autor === '') {
-                $('#autorLivro').addClass('is-invalid');
+                $('#autor').addClass('is-invalid');
                 valido = false;
             }
 
             if (editora === '') {
-                $('#editoraLivro').addClass('is-invalid');
+                $('#editora').addClass('is-invalid');
                 valido = false;
             }
 
@@ -157,7 +172,6 @@
                 e.preventDefault();
             } else {
             alert("Cadastro realizado com sucesso!");
-            window.location.href = "estoque_livros.html";
             }
         });
     });
