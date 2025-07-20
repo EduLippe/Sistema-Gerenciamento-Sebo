@@ -1,41 +1,42 @@
 <?php
-
     session_start();
-    
+
     include 'conexao_bd.php';
 
     $email = trim($_POST['emailUsuario'] ?? '');
     $senha = trim($_POST['senhaUsuario'] ?? '');
 
-    // Prepara a consulta no bd
-    $stmt = $conexao->prepare("SELECT id, email, senha FROM usuarios WHERE email = ?");
-    $stmt->bind_param("s", $email); // Troca o ? pelo email
-    $stmt->execute();
-    $result = $stmt->get_result(); // recebe o resultado da pesquisa
+    try {
+        // Prepara a consulta no PostgreSQL
+        $stmt = $conexao->prepare("SELECT id, email, senha FROM usuarios WHERE email = :email");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR); // como eu fiz o DB no superbase precisa usar algumas coisas diferentes
+        $stmt->execute();
 
-    if ($result->num_rows > 0) {
-        $usuario = $result->fetch_assoc();
+        if ($stmt->rowCount() > 0) {
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Compara diretamente a senha e email
-        if ($senha === $usuario['senha']) {
-            $_SESSION['usuario_id'] = $usuario['id'];
-            $_SESSION['usuario_email'] = $usuario['email'];
-            header("Location: /Trab/template/inicio/inicio.html");
+            // Compara diretamente a senha
+            if ($senha === $usuario['senha']) {
+                $_SESSION['usuario_id'] = $usuario['id'];
+                $_SESSION['usuario_email'] = $usuario['email'];
+                header("Location: /Trab/template/inicio/inicio.html");
+                exit;
+            } 
+            
+            else {
+                // Senha incorreta
+                header("Location: /Trab/index.html");
+                exit;
+            }
 
-
-        } 
-        
-        else { // quando a senha esta incorreta
+        } else {
+            // Email não encontrado
             header("Location: /Trab/index.html");
+            exit;
         }
-        
-    } 
 
-    else {
-        header("Location: /Trab/index.html");
+    } catch (PDOException $e) {
+        echo "Erro: " . $e->getMessage();
     }
-
-    $stmt->close();
-    $conexao->close();
 
 ?>
