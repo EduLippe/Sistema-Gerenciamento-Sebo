@@ -1,12 +1,15 @@
 <?php
-$host = 'localhost';
-$usuario = 'root';
-$senha = ''; // ou a senha do seu MySQL
-$banco = 'bd_soft_livr';
+$host = 'db.ugifgqjdrxagkgdxtxex.supabase.co';
+$porta = '5432';
+$dbname = 'postgres';
+$usuario = 'postgres';
+$senha = 'LibreriaHonyasan.'; // coloque a senha que o Supabase gerou
 
-$conexao = new mysqli($host, $usuario, $senha, $banco);
-
-if ($conexao->connect_error) {
-    die("Erro na conexão: " . $conexao->connect_error);
+try {
+    $conexao = new PDO("pgsql:host=$host;port=$porta;dbname=$dbname", $usuario, $senha);
+    $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Conexão bem-sucedida!";
+} catch (PDOException $e) {
+    echo "Erro na conexão: " . $e->getMessage();
 }
 ?>
