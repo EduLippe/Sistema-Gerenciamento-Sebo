@@ -1,0 +1,37 @@
+Integrantes:
+Eduardo Felippe Boregio Rufino - RA: 129379
+Lucas Akira Hayasaka           - RA: 129291
+
+Ambiente(s) de Desenvolvimento Utilizado(s):
+  O projeto foi desenvolvido utilizando o editor de código Visual Studio Code, no sistema operacional Windows 11. Foram utilizadas as linguagens HTML5, CSS3, JavaScript e PHP. O ambiente contou ainda com extensões específicas para suporte a HTML, CSS e PHP, além de recursos do próprio VS Code como o live server.
+
+Servidor Web:
+  Durante o desenvolvimento local, foi utilizado o XAMPP, utilizando o localhost para acessar localmente. Para a hospedagem online utilizamos o Vercel.
+  https://gerenciamento-sebo.vercel.app/
+
+Sistema Gerenciador de Banco de Dados:
+  O projeto utiliza o sistema gerenciador de banco de dados MySQL, que foi configurado e acessado localmente por meio do phpMyAdmin, ferramenta integrada ao XAMPP.
+Foram criadas tabelas para armazenar informações de usuários, livros e discos, permitindo a execução de operações de CRUD (Create, Read, Update, Delete) por meio de scripts PHP.
+
+Framework(s):
+  Foi utilizado o framework Bootstrap, com o objetivo de criar uma interface responsiva e compatível com diferentes dispositivos.
+
+Biblioteca(s):
+  As seguintes bibliotecas foram utilizadas no projeto:
+	jQuery: utilizada para o tratamento de eventos, animações e a realização de requisições assíncronas de forma mais simplificada e compatível entre navegadores.
+	Bootstrap: Para o layour e componentes prontos.
+	Bootstrap Icons: Para os ícones.
+
+Instruções de Instalação:
+
+1. Faça o download do arquivo compactado .zip do projeto.
+
+2. Extraia o conteúdo do arquivo .zip em uma pasta de sua preferência.
+
+Instruções de Execução
+
+1. Abra um navegador de sua preferência e digite na barra de endereços: http://localhost/Trab
+
+2. Acesse o phpMyAdmin pelo endereço: http://localhost/phpmyadmin
+
+3. O projeto estará funcionando a partir do endereço localhost, e poderá ser utilizado normalmente via navegador.

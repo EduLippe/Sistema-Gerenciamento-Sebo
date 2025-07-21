@@ -34,7 +34,7 @@
             ");
 
             $update->bind_param(
-                "ssississs", 
+                "ssisiisss", 
                 $novoTitulo, $novoAutor, $novaPaginas, $novaEditora, $novoAno, $novaQuantidade,
                 $titulo, $autor, $editora
             );

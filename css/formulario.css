@@ -1,10 +1,8 @@
-/* Corpo da página */
 body {
     background-color: #ffffff;
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* Navbar */
 .menu-navbar {
     background-color: #1e3a8a !important;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

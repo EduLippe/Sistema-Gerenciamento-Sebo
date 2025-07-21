@@ -1,15 +1,13 @@
 <?php
-    $host = 'db.ugifgqjdrxagkgdxtxex.supabase.co';
-    $porta = '5432';
-    $dbname = 'postgres';
-    $usuario = 'postgres';
-    $senha = 'LibreriaHonyasan.'; // coloque a senha que o Supabase gerou
+    $host = '15.228.223.139';      // IP do servidor remoto onde está o MySQL
+    $usuario = 'root';             // usuário MySQL remoto
+    $senha = 'Sistema@sebo123.';   // senha correta para esse usuário no servidor remoto
+    $banco = 'bd_soft_livr';       // nome do banco no servidor remoto
 
-    try {
-        $conexao = new PDO("pgsql:host=$host;port=$porta;dbname=$dbname", $usuario, $senha);
-        $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Conexão bem-sucedida!";
-    } catch (PDOException $e) {
-        echo "Erro na conexão: " . $e->getMessage();
+    $conexao = new mysqli($host, $usuario, $senha, $banco);
+
+    if ($conexao->connect_error) {
+        die("Erro na conexão: " . $conexao->connect_error);
     }
+    echo "Conexão bem sucedida ao banco remoto!";
 ?>

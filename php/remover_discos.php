@@ -1,4 +1,5 @@
 <?php
+
     include 'conexao_bd.php';
 
     $titulo = trim($_POST['titulo'] ?? '');
@@ -8,65 +9,41 @@
     $quantidadeRemover = intval($_POST['quantidade'] ?? 0);
 
     if ($titulo && $cantor && $faixas > 0 && $gravadora && $quantidadeRemover > 0) {
-        try {
-            // Verifica se o disco existe
-            $stmt = $conexao->prepare("
-                SELECT id, quantidade FROM discos 
-                WHERE titulo = :titulo AND cantor = :cantor AND faixas = :faixas AND gravadora = :gravadora
-            ");
-            
-            $stmt->execute([
-                ':titulo' => $titulo,
-                ':cantor' => $cantor,
-                ':faixas' => $faixas,
-                ':gravadora' => $gravadora
-            ]);
+        // Verifica se o livro existe
+        $stmt = $conexao->prepare("
+            SELECT id, quantidade FROM discos 
+            WHERE titulo = ? AND cantor = ? AND faixas = ? AND gravadora = ?
+        ");
+        $stmt->bind_param("ssis", $titulo, $cantor, $faixas, $gravadora);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
 
-            $disco = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($resultado->num_rows > 0) {
+            $disco = $resultado->fetch_assoc();
 
-            if ($disco) {
-                
-                if ($disco['quantidade'] >= $quantidadeRemover) {
-                    // Atualiza a quantidade no banco
-                    $novaQuantidade = $disco['quantidade'] - $quantidadeRemover;
+            if ($disco['quantidade'] >= $quantidadeRemover) {
+                // Atualiza a quantidade no banco
+                $novaQuantidade = $disco['quantidade'] - $quantidadeRemover;
+                $update = $conexao->prepare("UPDATE discos SET quantidade = ? WHERE id = ?");
+                $update->bind_param("ii", $novaQuantidade, $disco['id']);
 
-                    $update = $conexao->prepare("
-                        UPDATE discos SET quantidade = :quantidade WHERE id = :id
-                    ");
-
-                    $sucesso = $update->execute([
-                        ':quantidade' => $novaQuantidade,
-                        ':id' => $disco['id']
-                    ]);
-
-                    if ($sucesso) {
-                        header("Location: /Trab/template/formulario/formulario_remover_discos.html");
-                        exit;
-
-                    } else {
-                        header("Location: /Trab/template/formulario/formulario_remover_discos.html?erro=update");
-                        exit;
-                    }
-
-                } else {
-                    header("Location: /Trab/template/formulario/formulario_remover_discos.html?erro=quantidade_insuficiente");
+                if ($update->execute()) {
+                    header("Location: /Trab/template/formulario/formulario_remover_discos.html");
                     exit;
+                } else {
+                    header("Location: /Trab/template/formulario/formulario_remover_discos.html" . $update->error);
                 }
-            } 
-            
-            else {
-                header("Location: /Trab/template/formulario/formulario_remover_discos.html?erro=nao_encontrado");
-                exit;
+            } else {
+                header("Location: /Trab/template/formulario/formulario_remover_discos.html");
             }
-
-        } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage();
+        } else {
+            header("Location: /Trab/template/formulario/formulario_remover_discos.html");
         }
-    } 
 
-    else {
-        header("Location: /Trab/template/formulario/formulario_remover_discos.html?erro=campos_invalidos");
-        exit;
+        $stmt->close();
+    } else {
+        header("Location: /Trab/template/formulario/formulario_remover_discos.html");
     }
-    
+
+    $conexao->close();
 ?>

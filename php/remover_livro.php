@@ -9,11 +9,13 @@
     $quantidadeRemover = intval($_POST['quantidade'] ?? 0);
 
     if ($titulo && $autor && $paginas > 0 && $editora && $quantidadeRemover > 0) {
+        
         // Verifica se o livro existe
         $stmt = $conexao->prepare("
             SELECT id, quantidade FROM livros 
             WHERE titulo = ? AND autor = ? AND paginas = ? AND editora = ?
         ");
+
         $stmt->bind_param("ssis", $titulo, $autor, $paginas, $editora);
         $stmt->execute();
         $resultado = $stmt->get_result();
@@ -22,6 +24,7 @@
             $livro = $resultado->fetch_assoc();
 
             if ($livro['quantidade'] >= $quantidadeRemover) {
+
                 // Atualiza a quantidade no banco
                 $novaQuantidade = $livro['quantidade'] - $quantidadeRemover;
                 $update = $conexao->prepare("UPDATE livros SET quantidade = ? WHERE id = ?");
