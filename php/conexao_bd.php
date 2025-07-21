@@ -1,14 +1,12 @@
 <?php
-    $host = '15.228.223.139';      // ou 'localhost' se o PHP está na mesma máquina
-    $usuario = 'root';             // ou um usuário específico, se você criou
-    $senha = 'Sistema@sebo123.';
-    $banco = 'bd_srv_livra';
+    $host = '15.228.223.139';   // IP do servidor MySQL na AWS
+    $usuario = 'app_user';       // Aqui você coloca o nome do usuário que criou
+    $senha = 'Sistema@sebo123.';  // A senha que você definiu para esse usuário
+    $banco = 'bd_srv_livra';     // Nome do banco de dados que quer usar
 
     $conexao = new mysqli($host, $usuario, $senha, $banco);
 
     if ($conexao->connect_error) {
         die("Erro na conexão: " . $conexao->connect_error);
     }
-
-    echo "Conexão bem-sucedida!";
 ?>
