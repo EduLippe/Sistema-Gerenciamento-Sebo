@@ -1,5 +1,5 @@
 <?php
-    $host = '15.228.223.139';      // IP do servidor remoto onde está o MySQL
+    $host = 'localhost';     // IP do servidor remoto onde está o MySQL
     $usuario = 'root';             // usuário MySQL remoto
     $senha = 'Sistema@sebo123.';   // senha correta para esse usuário no servidor remoto
     $banco = 'bd_soft_livr';       // nome do banco no servidor remoto
