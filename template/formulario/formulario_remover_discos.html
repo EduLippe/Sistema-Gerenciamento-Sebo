@@ -95,6 +95,9 @@
                             <button type="submit" class="btn btn-salvar">Remover</button>
                             <a href="../estoque/estoque_discos.html" class="btn btn-cancelar">Cancelar</a>
                         </div>
+                        <div id="alerta-remocao" class="alert alert-success text-center d-none" role="alert">
+                            Remoção sendo processada!
+                        </div> <!--Teste se precisar remover-->
                     </form>
                 </div>
             </div>
@@ -146,8 +149,7 @@
             if (!valido) { // não deixa enviar se o campo estiver vazio
                 e.preventDefault();
             } else {
-                alert("Remoção realizada com sucesso!");
-                window.location.href = "estoque_discos.html";
+                alert("Remoção sendo processada!");
             }
         });
     });

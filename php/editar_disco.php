@@ -40,11 +40,11 @@
             );
 
             if ($update->execute()) {
-                header("Location: /Trab/template/formulario/formulario_editar_discos.html?status=sucesso_update");
+                header("Location: /Trab/template/formulario/formulario_editar_discos.html");
             } 
             
             else {
-                header("Location: /Trab/template/formulario/formulario_editar_discos.html?erro=update");
+                header("Location: /Trab/template/formulario/formulario_editar_discos.html");
             }
 
             $update->close();
@@ -52,7 +52,7 @@
         }
         
         else {
-            header("Location: /Trab/template/formulario/formulario_editar_discos.html?erro=naoencontrado");
+            header("Location: /Trab/template/formulario/formulario_editar_discos.html");
         }
 
         $stmt->close();
@@ -60,7 +60,7 @@
     } 
 
     else {
-        header("Location: /Trab/template/formulario/formulario_editar_discos.html?erro=campos");
+        header("Location: /Trab/template/formulario/formulario_editar_discos.html");
     }
 
     $conexao->close();

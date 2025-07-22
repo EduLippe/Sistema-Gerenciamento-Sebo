@@ -40,11 +40,11 @@
             );
 
             if ($update->execute()) {
-                header("Location: /Trab/template/formulario/formulario_editar_livros.html?status=sucesso_update");
+                header("Location: /Trab/template/formulario/formulario_editar_livros.html");
             } 
             
             else {
-                header("Location: /Trab/template/formulario/formulario_editar_livros.html?erro=update");
+                header("Location: /Trab/template/formulario/formulario_editar_livros.html");
             }
 
             $update->close();
@@ -52,7 +52,7 @@
         }
         
         else {
-            header("Location: /Trab/template/formulario/formulario_editar_livros.html?erro=naoencontrado");
+            header("Location: /Trab/template/formulario/formulario_editar_livros.html");
         }
 
         $stmt->close();
@@ -60,7 +60,7 @@
     } 
 
     else {
-        header("Location: /Trab/template/formulario/formulario_editar_livros.html?erro=campos");
+        header("Location: /Trab/template/formulario/formulario_editar_livros.html");
     }
 
     $conexao->close();

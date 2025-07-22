@@ -139,14 +139,10 @@
             $('.form-control').removeClass('is-invalid'); // esta selecionando todos os elementos com a classe form-control
                                                          // são comandos do bootstrap
 
-
             // cria variaveis para o codigo js
             let titulo = $('#titulo').val().trim();
             let cantor = $('#cantor').val().trim();
-            let faixas = $('#faixas').val().trim();
             let gravadora = $('#gravadora').val().trim();
-            let anoPublicacao = $('#anoPublicacao').val().trim();
-            let quantidade = $('#quantidade').val().trim()
 
             // faz a verificação dos campos
             if (titulo === '') {
@@ -167,7 +163,7 @@
             if (!valido) { // não deixa enviar se o campo estiver vazio
                 e.preventDefault();
             } else {
-            alert("Cadastro realizado com sucesso!");
+                alert("Edição realizado com sucesso!");
             }
         });
     });

@@ -95,10 +95,10 @@
                         </div>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-salvar">Remover</button>
-                            <a href="../../estoque/estoque_livros.html" class="btn btn-cancelar">Cancelar</a>
+                            <a href="../../template/estoque/estoque_livros.html" class="btn btn-cancelar">Cancelar</a>
                         </div>
                         <div id="alerta-remocao" class="alert alert-success text-center d-none" role="alert">
-                            Remoção realizada com sucesso!
+                            Remoção sendo processada!
                         </div> <!--Teste se precisar remover-->
                     </form>
                 </div>
@@ -107,22 +107,18 @@
     </div>
 
     <script>
-        $(document).ready(function(){ // aqui esta selecionando o arquivo formDisco
-        $('#formDisco').on('submit', function (e) { // so executa assim que clicar em salvar
+        $(document).ready(function() {
+        $('#formDisco').on('submit', function(e) {
             let valido = true;
 
-            $('.form-control').removeClass('is-invalid'); // esta selecionando todos os elementos com a classe form-control
-                                                         // são comandos do bootstrap
+            $('.form-control').removeClass('is-invalid');
 
-
-            // cria variaveis para o codigo js
             let titulo = $('#tituloLivro').val().trim();
             let autor = $('#autorLivro').val().trim();
-            let paginas = $('#paginasLivro').val().trim()
+            let paginas = $('#paginasLivro').val().trim();
             let editora = $('#editoraLivro').val().trim();
-            let quantidade = $('#quantidadeLivro').val().trim()
+            let quantidade = $('#quantidadeLivro').val().trim();
 
-            // faz a verificação dos campos
             if (titulo === '') {
                 $('#tituloLivro').addClass('is-invalid');
                 valido = false;
@@ -148,22 +144,16 @@
                 valido = false;
             }
 
-            if (!valido) { // não deixa enviar se o campo estiver vazio
-                e.preventDefault();
+            if (!valido) {
+                e.preventDefault(); // impede envio se inválido
             } else {
-                $('#alerta-remocao').removeClass('d-none');
-
-                // Espera 2 segundos antes de redirecionar
-                setTimeout(() => {
-                    window.location.href = "formulario_remover_livros.html";
-                }, 2000);
-
-                //e.preventDefault(); // ainda previne para mostrar o alerta antes de redirecionar
-                //$('#alerta-remocao').removeClass('d-none');
-                //window.location.href = "formulario_remover_livros.html";//<!--Teste se precisar remover-->
+                alert("Remoção sendo processada!");
+                // NÃO coloca e.preventDefault() aqui
+                // deixa o form ser enviado normalmente para o PHP
             }
         });
     });
+
     </script>
 
 </body>

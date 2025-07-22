@@ -1,8 +1,8 @@
 <?php
-    $host = '15.228.223.139';   // IP do servidor MySQL na AWS
-    $usuario = 'app_user';       // Aqui você coloca o nome do usuário que criou
-    $senha = 'Sistema@sebo123.';  // A senha que você definiu para esse usuário
-    $banco = 'bd_srv_livra';     // Nome do banco de dados que quer usar
+    $host = 'ec2-15-228-223-139.sa-east-1.compute.amazonaws.com'; // endpoint público do EC2
+    $usuario = 'root';
+    $senha = 'Sistema@sebo123.';
+    $banco = 'bd_srv_livra';
 
     $conexao = new mysqli($host, $usuario, $senha, $banco);
 
